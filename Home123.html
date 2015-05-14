@@ -5,3 +5,682 @@
  <meta name="viewport" content="width=1024, initial-scale= 1">
  <title>123D Circuits</title>
  <meta content="authenticity_token" name="csrf-param" />
+<meta content="qQ1a3oXM7srGtzWPTHMkU+InYcZX498WEOX21NFgZ/I=" name="csrf-token" />
+ 
+  <link href="http://assets.circuits.io/assets/index-f3ba9091a7d8d8e8756b0676e6bc05bd.css" media="all" rel="stylesheet" type="text/css" />
+
+
+  <link href="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link href="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="72x72" type="image/vnd.microsoft.icon" />
+  <link href="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/apple-touch-icon-57x57-precomposed.png" rel="apple-touch-icon" sizes="57x57" type="image/vnd.microsoft.icon" />
+  <link href="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/apple-touch-icon-72x72-precomposed.png" rel="apple-touch-icon" sizes="72x72" type="image/vnd.microsoft.icon" />
+  <link href="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/apple-touch-icon-114x114-precomposed.png" rel="apple-touch-icon" sizes="114x114" type="image/vnd.microsoft.icon" />
+
+  <script type='text/javascript'>function set_redirect_path(destination) {
+    $.ajax({
+        url: '/set_redirect_path',
+        type: 'put',
+        dataType: 'json',
+        data: {redirect_path : destination},
+        success: function(result){
+            console.log("Redirect path set!")
+        }
+    })
+}
+
+function openSessionPopup(type, destination){
+	var our_window = false;
+
+    if (!window.location.origin) {
+        // Fix Internet Explorer
+        window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+    }
+
+    if(type == 'signup'){
+        var target_url = '/users/auth/adsk/?display=popup&register=true';
+
+        if (destination) {
+            target_url = target_url + '&redirect_path=' + destination;
+        }
+
+        our_window = window.open(window.location.origin + target_url,'signup','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=500,height=500,top=100,left=100');
+    }
+    else if(type == 'signin'){
+        var target_url = '/users/auth/adsk/?display=popup';
+
+        if (destination) {
+            target_url = target_url + '&redirect_path=' + destination;
+        }
+
+        our_window = window.open(window.location.origin + target_url,'signin','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=500,height=500,top=100,left=100');
+    }
+
+    return our_window;
+}
+</script>
+
+</head>
+
+<body class=''>
+
+<div id="outdated">
+  <h6>Your browser is out-of-date!</h6>
+  <p>Update your browser to view this website correctly. <a id="btnUpdate" href="http://outdatedbrowser.com/">Update my browser now</a></p>
+  <p id="btnClose"><a href="#">Close</a></p>
+</div>
+
+<div class="sitemenu sitemenu--site js-sitemenu">
+  <div class='sitemenu__inner'>
+    <div class="sitemenu__left clearfix">
+      <div class='float'>
+        <a href="/">
+          <div class="sitemenu__item sitemenu__borderright sitemenu__logo__image"><div class='logo__image'><img src='https://s3-us-west-1.amazonaws.com/123d-circuits-assets/logo_mini.png' with='30' height='30'></div></div>
+        </a>
+      </div>
+      <div class='float'>
+        <a href="/">
+          <div class="sitemenu__item sitemenu__logo__text">123D Circuits</div>
+        </a>
+      </div>
+      <div class='float'>
+        <div class="sitemenu__item"> / </div>
+      </div>
+      <div class='float'>
+        <a href="/circuits/">
+          <div class="sitemenu__item">Circuits</div>
+        </a>
+      </div>
+      <div class='float'>
+        <a href="/components/">
+          <div class="sitemenu__item">Components</div>
+        </a>
+      </div>
+      <div class='float'>
+        <a href="/circuitscribe/">
+          <div class="sitemenu__item">Circuit Scribe</div>
+        </a>
+      </div>
+
+        <div class='float'>
+          <a href="https://123dcircuits.zendesk.com/access/login" target="_blank">
+            <div class="sitemenu__item">Help</div>
+          </a>
+        </div>
+    </div>
+    <div class="sitemenu__right">
+      <div class='float'>
+        <a href="/shop/">
+          <div class="sitemenu__item">Shop</div>
+        </a>
+      </div>
+      <div class='float'>
+        <div class="sitemenu__item sitemenu__item--right">
+          <div class="search__field sitemenu__site-search">
+            <form accept-charset="UTF-8" action="/circuits/search/" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+              <input class="text-input search__query" id="q" name="q" placeholder="Search" type="text" />
+               <button type="submit" class="search__btn">
+               <span class="icon__search"><?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path fill="#231F20" d="M23.701 21.678l-4.051-4.342c.973-1.478 1.43-3.224 1.284-5.016-.172-2.125-1.164-4.056-2.788-5.436-2.979-2.531-7.448-2.509-10.395.049-.304.266-.593.556-.855.866-2.85 3.354-2.44 8.401.915 11.25 2.353 1.999 5.633 2.398 8.36 1.22l.093.124 4.101 4.396c.499.534 1.193.776 1.869.716.489-.043.968-.243 1.354-.604.922-.859.971-2.302.113-3.223zm-13.822-5.062c-2.013-1.711-2.259-4.738-.55-6.751.159-.187.333-.362.515-.521 1.766-1.534 4.448-1.545 6.235-.027.975.828 1.569 1.987 1.673 3.262.103 1.274-.295 2.513-1.123 3.489-.159.186-.333.362-.516.521-1.768 1.533-4.448 1.546-6.234.027z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg></span>
+               </button>
+</form>          </div>
+        </div>
+      </div>
+        <div class='float js-shoppingcart-menu hide'>
+          <div class="sitemenu__item--right sitemenu__borderleft">
+            <div class='js-shoppingcart-menu__animation'>
+              <a href="/cart">
+                <div class='sitemenu__shoppingcart clearfix'>
+                  <div class='sitemenu__shoppingcart__svg float'><span class='js-shoppingcart-menu__loading hide'></span><span class='js-shoppingcart-menu__svgimage'><?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M23.102 18.527h-11.425l-3.914-11.018c-.109-.305-.399-.509-.725-.509h-3.264c-.424 0-.768.34-.768.761 0 .42.344.76.768.76h2.72l3.915 11.019c.108.305.398.508.725.508h11.968c.424 0 .768-.34.768-.76 0-.421-.344-.761-.768-.761zm1.216-8.959l-13.761-.512c-.421-.015-.647.293-.5.683l2.475 6.618c.147.393.612.713 1.035.713h9.856c.421 0 .808-.339.858-.755l.715-5.964c.048-.414-.255-.766-.678-.783zm-3.526 11.821c-1.01 0-1.83.812-1.83 1.811 0 .998.82 1.81 1.83 1.81 1.009 0 1.83-.812 1.83-1.81s-.822-1.811-1.83-1.811zm-7.619 0c-1.009 0-1.83.812-1.83 1.811 0 .998.82 1.81 1.83 1.81 1.008 0 1.83-.812 1.83-1.81s-.821-1.811-1.83-1.811z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg></span></div>
+                  <div class='sitemenu__shoppingcart__text float'>(<span class='js-shoppingcart-total'>0</span>)</div>
+                </div>
+</a>            </div>
+          </div>
+          <div class='js-shoppingcart-model-total hidden'>0</div>
+        </div>
+        <div class='float'>
+          <div class ='sitemenu__borderleft js-zendesk-trigger'>
+              <a title="Feedback">
+                <div class="sitemenu__view_switch sitemenu__svg_block_btn"><?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M10.081 8.039c.288-.241.601-.467.94-.677.338-.21.702-.395 1.091-.554.389-.159.807-.284 1.255-.374.448-.089.932-.134 1.453-.134.732 0 1.391.097 1.978.292.588.195 1.088.473 1.501.835.412.362.73.798.951 1.307.222.51.333 1.076.333 1.698 0 .599-.082 1.113-.246 1.541-.163.428-.371.802-.624 1.121-.253.319-.53.593-.829.823l-.852.648c-.268.203-.503.401-.701.595-.199.195-.321.412-.368.654l-.326 1.633h-2.475l-.257-1.879-.018-.14-.006-.14c0-.342.082-.642.246-.899.164-.256.37-.492.619-.706s.517-.42.805-.619c.288-.198.556-.412.805-.642.25-.23.456-.486.619-.77.164-.284.246-.62.246-1.009 0-.467-.153-.838-.461-1.115-.308-.276-.73-.414-1.266-.414-.412 0-.758.042-1.033.128-.277.086-.514.181-.712.286l-.519.286c-.148.086-.296.128-.444.128-.335 0-.584-.144-.747-.432l-.958-1.471zm2.148 13.621c0-.281.052-.541.158-.782.105-.241.249-.451.431-.63.183-.179.399-.321.649-.426.249-.106.521-.158.817-.158.288 0 .556.052.805.158.25.105.467.247.654.426s.333.389.437.63c.106.241.159.502.159.782s-.053.543-.159.788c-.105.246-.251.457-.437.636-.187.179-.404.319-.654.421-.249.101-.517.151-.805.151-.295 0-.568-.051-.817-.151-.25-.102-.465-.241-.649-.421-.182-.179-.326-.391-.431-.636-.106-.245-.158-.508-.158-.788z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg></div>
+              </a>
+          </div>
+        </div>
+        <div class='float'>
+          <div class="sitemenu__item--right sitemenu__borderleft sitemenu__avatarfix js-user-is-logged-in">
+            <a href="/users/224537">
+              <img alt="avatar" class="avatar avatar avatar--small" height="36" src="https://www.gravatar.com/avatar/7d9807d918ee3980189f94db14b79eab.jpg?s=72&amp;d=https%3A%2F%2F123d.circuits.io%2Fassets%2Fcircuits-default-gravatar.png" title="KTibow KTibow" width="36" />
+</a>          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="mother__wrapper ">
+  <div class="mother__container">
+
+
+    <div class="container_12">
+	<div class=" clearfix">
+
+		<!-- TOP BANNER -->
+
+		<div class='vertical-spacing--top--half clearfix'>
+			<div class='circuit_scribe__projectslocation right'>Your projects are now here <img src='/assets/homepage-arrow-showprojects.png' width='33' height="20"></div>
+		</div>
+
+		<!-- CALL TO ACTION BUTTONS -->
+
+		<div class="vertical-spacing--top--half clearfix">
+			<div class="grid_4 vertical-spacing--bottom">
+				<div class="circuit-card circuit-card--explore">
+					<div class="circuit-card__image--explore">
+						<a href='/circuits/create_empty?circuit_type=breadboard'><img src='https://s3-us-west-1.amazonaws.com/123d-circuits-assets/homepage-quickcreate-breadboard.jpg'></a>
+					</div>
+					<div class="circuit-card__details">
+						<a href='/circuits/create_empty?circuit_type=breadboard'>
+							<div class="circuit-card__title circuit-card__title--explore bold">
+								Breadboard Circuits + Simulation
+							</div>
+						</a>
+						<div class="circuit-card__call-to-action">
+							<a href='/circuits/create_empty?circuit_type=breadboard' class='btn btn--green btn--circuitcard'>New Breadboard Circuit</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_4 vertical-spacing--bottom">
+				<div class="circuit-card circuit-card--explore">
+					<div class="circuit-card__image--explore">
+						<a href='/circuits/create_empty?circuit_type=schematic'><img src='https://s3-us-west-1.amazonaws.com/123d-circuits-assets/homepage-quickcreate-schematicpcb.jpg'>	</a>
+					</div>
+					<div class="circuit-card__details">
+						<a href='/circuits/create_empty?circuit_type=schematic'>
+							<div class="circuit-card__title circuit-card__title--explore bold">
+								Schematic + PCB
+							</div>
+						</a>
+						<div class="circuit-card__call-to-action">
+							<a href='/circuits/create_empty?circuit_type=schematic' class='btn btn--green btn--circuitcard'>New Schematic Circuit</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_4 vertical-spacing--bottom">
+				<div class="circuit-card circuit-card--explore">
+					<div class="circuit-card__image--explore">
+						<a href='/circuits/create_empty?circuit_type=circuitscribe'><img src='https://s3-us-west-1.amazonaws.com/123d-circuits-assets/homepage-quickcreate-circuitscribe.jpg'>	</a>
+					</div>
+					<div class="circuit-card__details">
+						<a href='/circuits/create_empty?circuit_type=circuitscribe'>
+							<div class="circuit-card__title circuit-card__title--explore bold">
+								Circuit Scribe Sketch + Simulation
+							</div>
+						</a>
+						<div class="circuit-card__call-to-action">
+							<a href='/circuits/create_empty?circuit_type=circuitscribe' class='btn btn--circuit-scribe btn--circuitcard'>New Circuit Scribe</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- CIRCUITSCRIBE BLOCK -->
+
+		<div class="grid_12">
+			<div class='vertical-spacing--top--half clearfix'>
+				<div class='circuit_scribe'>
+					<div class='circuit_scribe__top clearfix'>
+						<div class='circuit_scribe__title float'>Circuit Scribe Editor Beta</div>
+						<div class='circuit_scribe__logo right'><img src='https://s3-us-west-1.amazonaws.com/123d-circuits-assets/electroninks.png'></div>
+					</div>
+					<div class='circuit_scribe__content clearfix'>
+						<div class='grid_5_no_gutter alpha'>
+							<div class='circuit_scribe__left'>
+								<div class='circuit_scribe__subtitle'>Easily create and simulate <br>Circuit Scribe sketches online.</div>
+								<div class='circuit_scribe__text'>Circuit Scribe is a rollerball pen that writes with conductive ink. Combined with magnetic components, it makes creating circuits as easy as doodling.<br><br>
+
+								The online editor makes it easy to create your own sketches and share it with the community.</div>
+								
+							</div>
+						</div>
+						<div class='circuit_scribe__btns'>
+							<a href="/circuitscribe" class="btn btn--circuit-scribe clearfix">
+								Get Started
+							</a>
+							<a href="/shop/circuitscribe" class="btn btn__icon btn__buy-now--circuit-scribe clearfix">
+								<span class='btn__svg icon__shoppingcart'><?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M21.442 17.553h-9.347l-3.203-8.953c-.089-.247-.326-.413-.593-.413h-2.671c-.347 0-.628.276-.628.618 0 .341.281.617.628.617h2.226l3.203 8.953c.089.248.326.412.593.412h9.792c.347 0 .628-.277.628-.618.001-.34-.28-.616-.628-.616zm.996-7.279l-11.26-.417c-.345-.013-.529.238-.409.555l2.025 5.377c.12.32.501.58.847.58h8.064c.345 0 .661-.275.702-.613l.585-4.846c.04-.337-.208-.623-.554-.636zm-2.886 9.605c-.826 0-1.498.66-1.498 1.472 0 .811.671 1.471 1.498 1.471.825 0 1.497-.66 1.497-1.471.001-.812-.671-1.472-1.497-1.472zm-6.233 0c-.826 0-1.497.66-1.497 1.472 0 .811.671 1.471 1.497 1.471.825 0 1.497-.66 1.497-1.471 0-.812-.672-1.472-1.497-1.472z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg></span><span class='btn__txt'>Buy Now</span>
+							</a>
+						</div>
+						<div class='grid_7_no_gutter omega circuit_scribe__right'><iframe src="/video/?mp4=What+is+Circuit+Scribe-.mp4&webm=whatiscircuitscribe.webm&cover=whatiscircuitscribe.jpg&width=515&height=290" width="515" height="290" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- STAFF FAVORITES BLOCK -->
+
+	<div class="vertical-spacing--top clearfix">
+		<div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/148925-zigbee-light-dimmer">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_117748_pcb_thumb.png' class='thumb-image--pcb'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/148925-zigbee-light-dimmer">
+					Zigbee Light Dimmer
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/50845">
+					Otávio Ribeiro
+					<span class='badge makerBadge'>PREMIUM</span>
+</a>			</div>
+			<div class="circuit-card__description">
+		        Zigbee light dimmer
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>4
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>16
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/466032-drv8833-breakout">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_424057_pcb_thumb.png' class='thumb-image--pcb'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/466032-drv8833-breakout">
+					drv8833 breakout
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/65714">
+					Michael Daffin
+					
+</a>			</div>
+			<div class="circuit-card__description">
+		        A simple breakout board for the drv8833 h-bridge
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>1
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>10
+				</li>
+			</ul>
+				<div class="circuit-card__order">
+					<a href="/circuits/466032-drv8833-breakout/order" class="btn btn__icon btn--order clearfix">
+						<span class='btn__svg icon__shoppingcart'>
+							<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M21.442 17.553h-9.347l-3.203-8.953c-.089-.247-.326-.413-.593-.413h-2.671c-.347 0-.628.276-.628.618 0 .341.281.617.628.617h2.226l3.203 8.953c.089.248.326.412.593.412h9.792c.347 0 .628-.277.628-.618.001-.34-.28-.616-.628-.616zm.996-7.279l-11.26-.417c-.345-.013-.529.238-.409.555l2.025 5.377c.12.32.501.58.847.58h8.064c.345 0 .661-.275.702-.613l.585-4.846c.04-.337-.208-.623-.554-.636zm-2.886 9.605c-.826 0-1.498.66-1.498 1.472 0 .811.671 1.471 1.498 1.471.825 0 1.497-.66 1.497-1.471.001-.812-.671-1.472-1.497-1.472zm-6.233 0c-.826 0-1.497.66-1.497 1.472 0 .811.671 1.471 1.497 1.471.825 0 1.497-.66 1.497-1.471 0-.812-.672-1.472-1.497-1.472z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg>
+						</span>
+						<span class='btn__txt'>
+							Order
+						</span>
+					</a>
+				</div>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/653600-atari-punk-console-forrest-m-mims-iii-84">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_600483_breadboard_thumb.png' class='thumb-image--breadboard'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/653600-atari-punk-console-forrest-m-mims-iii-84">
+					Atari Punk Console - Forrest M M...
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/75168">
+					Thijs Bernolet
+					<span class='badge makerBadge'>PREMIUM</span>
+</a>			</div>
+			<div class="circuit-card__description">
+		        This breadboard simulation is based on a design published in 1984 by Forrest...
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>9
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>16
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/251828-16led">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_208911_breadboard_thumb.png' class='thumb-image--breadboard'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/251828-16led">
+					16LED
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/77537">
+					Wenqingping Wenqingping
+					
+</a>			</div>
+			<div class="circuit-card__description">
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>7
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>44
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/167092-rotary-encoder-hardware-debouncing">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_153453_pcb_thumb.png' class='thumb-image--pcb'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/167092-rotary-encoder-hardware-debouncing">
+					Rotary Encoder Hardware Debouncing
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/43361">
+					Alexander Sharikov
+					
+</a>			</div>
+			<div class="circuit-card__description">
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>5
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>19
+				</li>
+			</ul>
+				<div class="circuit-card__order">
+					<a href="/circuits/167092-rotary-encoder-hardware-debouncing/order" class="btn btn__icon btn--order clearfix">
+						<span class='btn__svg icon__shoppingcart'>
+							<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M21.442 17.553h-9.347l-3.203-8.953c-.089-.247-.326-.413-.593-.413h-2.671c-.347 0-.628.276-.628.618 0 .341.281.617.628.617h2.226l3.203 8.953c.089.248.326.412.593.412h9.792c.347 0 .628-.277.628-.618.001-.34-.28-.616-.628-.616zm.996-7.279l-11.26-.417c-.345-.013-.529.238-.409.555l2.025 5.377c.12.32.501.58.847.58h8.064c.345 0 .661-.275.702-.613l.585-4.846c.04-.337-.208-.623-.554-.636zm-2.886 9.605c-.826 0-1.498.66-1.498 1.472 0 .811.671 1.471 1.498 1.471.825 0 1.497-.66 1.497-1.471.001-.812-.671-1.472-1.497-1.472zm-6.233 0c-.826 0-1.497.66-1.497 1.472 0 .811.671 1.471 1.497 1.471.825 0 1.497-.66 1.497-1.471 0-.812-.672-1.472-1.497-1.472z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg>
+						</span>
+						<span class='btn__txt'>
+							Order
+						</span>
+					</a>
+				</div>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/605129-attiny-programmer-arduino-shield">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_553488_breadboard_thumb.png' class='thumb-image--breadboard'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/605129-attiny-programmer-arduino-shield">
+					Attiny Programmer Arduino Shield
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/140524">
+					sean daly
+					
+</a>			</div>
+			<div class="circuit-card__description">
+		        Used to program Attiny 45/85 using Arduino as ISP
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>9
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>34
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/482504-rgb-led-fade-with-oscilloscopes">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_433979_breadboard_thumb.png' class='thumb-image--breadboard'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/482504-rgb-led-fade-with-oscilloscopes">
+					RGB LED Fade with Oscilloscopes
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/3161">
+					Rob Roberts
+					<span class='badge makerBadge'>PREMIUM</span>
+</a>			</div>
+			<div class="circuit-card__description">
+		        Demonstration of PWM-ing to create a fade, and view with Oscilloscope
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>20
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>58
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+			<a href="/circuits/174568-ldc1000-breakout-3-2">
+				<img src='https://s3-us-west-1.amazonaws.com/123d-circuits-schematic/circuit_139836_pcb_thumb.png' class='thumb-image--pcb'>
+</a>		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/174568-ldc1000-breakout-3-2">
+					LDC1000 Breakout 3-2
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/41877">
+					Daniel Guice
+					
+</a>			</div>
+			<div class="circuit-card__description">
+		        This is a small SPI breakout board for the LDC1000 inductance to digital...
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>2
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>6
+				</li>
+			</ul>
+				<div class="circuit-card__order">
+					<a href="/circuits/174568-ldc1000-breakout-3-2/order" class="btn btn__icon btn--order clearfix">
+						<span class='btn__svg icon__shoppingcart'>
+							<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M21.442 17.553h-9.347l-3.203-8.953c-.089-.247-.326-.413-.593-.413h-2.671c-.347 0-.628.276-.628.618 0 .341.281.617.628.617h2.226l3.203 8.953c.089.248.326.412.593.412h9.792c.347 0 .628-.277.628-.618.001-.34-.28-.616-.628-.616zm.996-7.279l-11.26-.417c-.345-.013-.529.238-.409.555l2.025 5.377c.12.32.501.58.847.58h8.064c.345 0 .661-.275.702-.613l.585-4.846c.04-.337-.208-.623-.554-.636zm-2.886 9.605c-.826 0-1.498.66-1.498 1.472 0 .811.671 1.471 1.498 1.471.825 0 1.497-.66 1.497-1.471.001-.812-.671-1.472-1.497-1.472zm-6.233 0c-.826 0-1.497.66-1.497 1.472 0 .811.671 1.471 1.497 1.471.825 0 1.497-.66 1.497-1.471 0-.812-.672-1.472-1.497-1.472z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg>
+						</span>
+						<span class='btn__txt'>
+							Order
+						</span>
+					</a>
+				</div>
+		</div>
+	
+	</div>
+</div><div class="grid_4 vertical-spacing--bottom">
+	<div class="circuit-card">
+		<div class="circuit-card__image">
+		</div>
+		<div class="circuit-card__details">
+			<div class="circuit-card__title bold">
+				<a href="/circuits/721920-quadcopter-electronics-shield">
+					Quadcopter Electronics Shield
+</a>			</div>
+			<div class="circuit-card__author">
+				<a href="/users/34732">
+					Ryan Petschek
+					
+</a>			</div>
+			<div class="circuit-card__description">
+		        Shield for the Arduino UNO that allows 4 ESCs to be plugged in, power, and be...
+			</div>
+		</div>
+		<div class="circuit-card__social">
+			<ul class="socialIcons">
+				<li>
+					<span data-icon="" name="star"></span>1
+				</li>
+				<li>
+					<span data-icon="" name="forks"></span>7
+				</li>
+			</ul>
+				<div class="circuit-card__order">
+					<a href="/circuits/721920-quadcopter-electronics-shield/order" class="btn btn__icon btn--order clearfix">
+						<span class='btn__svg icon__shoppingcart'>
+							<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path d="M21.442 17.553h-9.347l-3.203-8.953c-.089-.247-.326-.413-.593-.413h-2.671c-.347 0-.628.276-.628.618 0 .341.281.617.628.617h2.226l3.203 8.953c.089.248.326.412.593.412h9.792c.347 0 .628-.277.628-.618.001-.34-.28-.616-.628-.616zm.996-7.279l-11.26-.417c-.345-.013-.529.238-.409.555l2.025 5.377c.12.32.501.58.847.58h8.064c.345 0 .661-.275.702-.613l.585-4.846c.04-.337-.208-.623-.554-.636zm-2.886 9.605c-.826 0-1.498.66-1.498 1.472 0 .811.671 1.471 1.498 1.471.825 0 1.497-.66 1.497-1.471.001-.812-.671-1.472-1.497-1.472zm-6.233 0c-.826 0-1.497.66-1.497 1.472 0 .811.671 1.471 1.497 1.471.825 0 1.497-.66 1.497-1.471 0-.812-.672-1.472-1.497-1.472z" class="svg_icon" enable-background="new 0 0 30 30"></path></svg>
+						</span>
+						<span class='btn__txt'>
+							Order
+						</span>
+					</a>
+				</div>
+		</div>
+	
+	</div>
+</div>
+	</div>
+
+	<!-- ADSK FAMILY BLOCK -->
+
+	<div class="vertical-spacing--top clearfix">
+		<div class="adsk-family">
+			<div class="grid_12">
+				<div class="grid_4_with_gutter omega adsk-family__left clearfix">
+					<a href="http://www.123dapp.com/catch" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-123dcatch-42px.png" width="42" height="42"></a>
+					<a href="http://www.123dapp.com/design" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-123ddesign-42px.png" width="42" height="42"></a>
+					<a href="http://www.123dapp.com/creature" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-123dcreature-42px.png" width="42" height="42"></a>
+					<a href="http://www.123dapp.com/make" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-123dmake-42px.png" width="42" height="42"></a>
+					<a href="http://www.123dapp.com/sculpt" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-123dsculpt-42px.png" width="42" height="42"></a>
+					<a href="http://www.tinkercad.com/" class="adsk-family__member"><img src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/appicon-tinkercad-42px.png   " width="42" height="42"></a>
+				</div>
+				<div class="grid_8_no_gutter alpha">
+					<div class="grid_0 adsk-family__right">Meet the 123D family and get creative...</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+  </div>
+
+  <div class="footerPush"></div>
+</div>
+
+<div class="footer">
+  <div class="container_12">
+    
+    <div class="grid_6">
+      <a href="http://autodesk.com" target="_blank">
+        <img alt="Go to Autodesk.com" src="https://s3-us-west-1.amazonaws.com/123d-circuits-assets/123D_logo_footer.png" width='140' height="24">
+      </a>
+      <div class="footer__body">
+        <p>For people who want to make things themselves, Autodesk 123D is free software integrated with content and fabrication services. Free products and services are subject to the Autodesk, Inc, terms of use that accompany them.</p>
+        <p>© 2015 Autodesk, Inc. All Rights Reserved. </p>
+        <p><a href="/terms">Terms of Service</a> - <a href="/legal">Legal Notices &amp; Trademark</a> - <a href="/privacy">Privacy</a> - <a href='/kids-privacy'>Children's Privacy Policy</a></p>
+      </div>
+    </div>
+    <div class="grid_2">
+      <div class="footer__title">Apps</div>
+      <ul class="footer__linklist">
+        <li><a href="http://www.123dapp.com/creature" target="_blank">123D Creature</a></li>
+        <li><a href="http://www.123dapp.com/design" target="_blank">123D Design</a></li>
+        <li><a href="http://www.123dapp.com/make" target="_blank">123D Make</a></li>
+        <li><a href="http://www.123dapp.com/sculpt" target="_blank">123D Sculpt</a></li>
+        <li><a href="http://www.123dapp.com/catch" target="_blank">123D Catch</a></li>
+        <li><a href="http://www.tinkercad.com/" target="_blank">Tinkercad</a></li>
+        <li><a href="http://www.123dapp.com/sandbox#section-meshmixer" target="_blank">Meshmixer</a></li>
+        <li><a href="http://www.123dapp.com/sandbox#section-shapeshifter" target="_blank">Shapeshifter</a></li>
+      </ul>
+    </div>
+    <div class="grid_2">
+      <div class="footer__title">Resources</div>
+      <ul class="footer__linklist">
+        <li><a href="http://123dapp.com/about">About 123D</a></li>
+        <li><a href="http://123dapp.com/faq">FAQ</a></li>
+        <li><a href="https://123dcircuits.zendesk.com/hc/admin/appearance?return_to=%2Fhc%2Fen-us">Site support</a></li>
+      </ul>
+    </div>
+    <div class="grid_2">
+      <div class="footer__title">Follow Us</div>
+      <ul class="footer__linklist">
+        <li><a href="http://www.facebook.com/Autodesk123D">Facebook</a></li>
+        <li><a href="http://www.twitter.com/Autodesk123D">Twitter</a></li>
+        <li><a href="http://www.youtube.com/Autodesk123D">YouTube</a></li>
+        <li><a href="http://www.pinterest.com/Autodesk123D">Pinterest</a></li>
+        <li><a target='_blank' href="http://blog.123dapp.com">Blog</a></li>
+      </ul>
+    </div>
+      
+  </div>
+</div>
+
+<script src="http://assets.circuits.io/assets/site-f4c8565e9d82bc2c49a52854b25ccbd9.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script><style type="text/css" media="screen, projection">@import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);</style><script type="text/javascript">if (typeof(Zenbox) !== "undefined") {Zenbox.init({dropboxID:   "20164515",url:         "https://123dcircuits.zendesk.com",tabTooltip:  "Support",tabImageURL: "https://p4.zdassets.com/external/zenbox/images/tab_support.png",tabColor:    "#87ae5a",requester_name: 'KTibow KTibow',requester_email: 'COPPA_5PHXPK7MH9DY@autodesk.com',tabPosition: "Left"});}$(".ZenboxTabLeft").hide();$(".js-zendesk-trigger").click(function(){window.Zenbox.show()});</script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-33214819-2', 'auto');ga('require', 'displayfeatures');ga('send', 'pageview');</script>
+<script type='text/javascript'> // Pixel name = 123D Circuits Registrations 
+var fb_param = { }; fb_param.pixel_id = '6019507516021'; fb_param.value = '0.00'; fb_param.currency = 'EUR'; (function(){ var fpw = document.createElement('script'); fpw.async = true; fpw.src = '//connect.facebook.net/en_US/fp.js'; var ref = document.getElementsByTagName('script')[0]; ref.parentNode.insertBefore(fpw, ref); })(); </script> <noscript><img height='1' width='1' alt=' style='display:none'src='https://www.facebook.com/offsite_event.php?id=6019507516021&value=0.00&currency=EUR' /></noscript>
+
+<script type="text/javascript">if (typeof NREUMQ !== "undefined") { if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","bam.nr-data.net","dda064e7b0","2467745","egpYQUJaCloERh4VUl4ARRpYWgtT",0,97,new Date().getTime(),"","","","",""]);}</script></body>
+</html>
+
